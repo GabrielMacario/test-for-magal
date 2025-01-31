@@ -1,156 +1,194 @@
-Plano de Testes para Integração com Marketplaces
-
-1. Documentação e Materiais de Apoio
-
-Identificação da Documentação:
-
-Documentação oficial das APIs dos marketplaces (Amazon, Mercado Livre, etc.).
-
-Especificações técnicas da integração, incluindo diagrama de arquitetura.
-
-Requisitos funcionais e não funcionais do projeto.
-
-Casos de uso e diagramas de fluxo da integração.
-
-Logs e histórico de erro das APIs dos marketplaces.
-
-Políticas de segurança e conformidade exigidas pelos marketplaces.
-
-Testes de compatibilidade com diferentes versões das APIs.
-
-Análise da Documentação:
-
-Revisar as especificações das APIs para entender os endpoints, métodos suportados, autenticação, restrições e limites de rate limit.
-
-Mapear os requisitos do projeto com os endpoints necessários para integração.
-
-Identificar possíveis cenários de erro com base nos códigos de resposta das APIs e políticas de retry.
-
-Verificar requisitos de tempo de resposta e desempenho das APIs.
-
-Mapeamento dos Requisitos:
-
-Criar uma matriz de rastreabilidade relacionando os requisitos do projeto com os casos de teste.
-
-Classificar os requisitos por área funcional (estoque, preço, pedidos, etc.).
-
-Definir critérios de aceitação para cada funcionalidade da integração.
-
-Criar um fluxo de validação para garantir conformidade com requisitos de segurança e privacidade de dados.
-
-Utilização de Ferramentas:
-
-Jira ou TestRail para gerenciamento de testes e rastreamento de requisitos.
-
-Postman para testes manuais de API.
-
-Swagger para documentação e exploração das APIs.
-
-Confluence para centralizar documentação.
-
-Ferramentas de BI para validar integração de dados.
-
-Kibana para monitoramento de logs e análise de erros.
-
-2. Abrangência dos Testes
-
-Funcionalidades a serem testadas:
-
-Integração de estoque: Atualização automática de quantidades.
-
-Anúncios: Criação, edição e exclusão de anúncios.
-
-Faturamento: Geração de notas fiscais e confirmação de pagamento.
-
-Pedidos: Sincronização de pedidos do marketplace com o e-commerce.
-
-Preço: Atualização dinâmica dos preços conforme regras de negócio.
-
-Segurança: Validação de autenticação e permissões nas chamadas de API.
-
-Casos de Uso:
-
-Cenários de Sucesso:
-
-Pedido criado no marketplace e sincronizado corretamente.
-
-Estoque atualizado após venda.
-
-Preço atualizado com sucesso.
-
-Pedido cancelado no marketplace e refletido corretamente no e-commerce.
-
-Nota fiscal gerada e enviada corretamente.
-
-Cenários de Falha:
-
-Erro na comunicação com API do marketplace.
-
-Falha ao atualizar estoque.
-
-Pedido duplicado ou não sincronizado.
-
-Autenticação falha ao acessar APIs do marketplace.
-
-Tempo de resposta da API excedendo os limites aceitáveis.
-
-Erro na aplicação de regras de preço.
-
-Cenários de Carga:
-
-Teste de alto volume de pedidos simultâneos.
-
-Teste de degradação da performance sob carga elevada.
-
-Validação do tempo de resposta sob uso extremo.
-
-Priorizacão dos Testes:
-
-Alta prioridade: Pedidos e faturamento (impacto direto no negócio).
-
-Média prioridade: Estoque e preço (impacto em vendas e gestão).
-
-Baixa prioridade: Edição e exclusão de anúncios.
-
-3. Execução dos Testes
-
-Ambiente de Teste:
-
-Ambiente de homologação com credenciais de teste.
-
-Simulação de APIs dos marketplaces para testar respostas controladas.
-
-Banco de dados isolado para testes sem impactar dados reais.
-
-Dados de Teste:
-
-Conjunto de produtos fictícios com diferentes preços e estoques.
-
-Perfis de usuários fictícios para testes de pedidos.
-
-Pedidos de teste gerados via API ou sandbox do marketplace.
-
-Cenários de integração com diferentes métodos de pagamento.
-
-Ferramentas de Automação:
-
-Cypress ou Selenium para testes da interface do e-commerce.
-
-Postman ou RestAssured para automação de testes de API.
-
-JMeter para testes de carga e desempenho.
-
-New Relic para monitoramento de desempenho da integração.
-
-Registro de Resultados:
-
-Jira/TestRail para documentar casos de teste e resultados.
-
-Dashboards em BI para monitoramento de integrações em tempo real.
-
-Logs armazenados em Kibana/ELK para análise de erros.
-
-Relatórios detalhados sobre falhas e impactos no negócio.
-
-Esse plano de testes garante que a integração seja validada de forma abrangente, considerando cenários reais e potenciais falhas que possam impactar o funcionamento da solução.
-
+## 1. Plano de Testes para Integração com Marketplaces
+
+### Documentação e Materiais de Apoio
+- **Documentação oficial das APIs** dos marketplaces (Amazon, Mercado Livre, etc.).
+- **Especificações técnicas** da integração, incluindo diagrama de arquitetura.
+- **Requisitos funcionais e não funcionais** do projeto.
+- **Casos de uso** e diagramas de fluxo da integração.
+- **Logs e histórico de erro** das APIs dos marketplaces.
+- **Políticas de segurança e conformidade** exigidas pelos marketplaces.
+- Analise de logs.
+  
+### Análise da Documentação
+- Revisar as especificações das APIs para entender os endpoints, métodos suportados, autenticação e restrições.
+- Mapear os requisitos do projeto com os endpoints necessários para integração.
+- Identificar possíveis cenários de erro com base nos códigos de resposta das APIs.
+- Verificar requisitos de tempo de resposta e desempenho das APIs.
+
+### Mapeamento dos Requisitos
+- Criar uma **matriz de rastreabilidade** relacionando os requisitos do projeto com os casos de teste.
+- Classificar os requisitos por área funcional (estoque, preço, pedidos, etc.).
+- Definir **critérios de aceitação** para cada funcionalidade da integração.
+- Criar um fluxo de validação para garantir conformidade com requisitos de segurança e privacidade de dados.
+
+### Utilização de Ferramentas
+- **Jira** ou **Trello** para gerenciamento de testes e rastreamento de requisitos.
+- **Postman** para testes manuais de API.
+- **Swagger** para documentação e exploração das APIs.
+- **Confluence** para centralizar documentação.
+
+### Abrangência dos Testes
+#### Funcionalidades a serem testadas:
+- **Integração de estoque**: Atualização automática de quantidades.
+- **Anúncios**: Criação, edição e exclusão de anúncios.
+- **Faturamento**: Geração de notas fiscais e confirmação de pagamento.
+- **Pedidos**: Sincronização de pedidos do marketplace com o e-commerce.
+- **Preço**: Atualização dinâmica dos preços conforme regras de negócio.
+- **Segurança**: Validação de autenticação e permissões nas chamadas de API.
+
+#### Casos de Uso:
+- **Cenários de Sucesso**:
+  - Pedido criado no marketplace e sincronizado corretamente.
+  - Estoque atualizado após venda.
+  - Preço atualizado com sucesso.
+  - Pedido cancelado no marketplace e refletido corretamente no e-commerce.
+  - Nota fiscal gerada e enviada corretamente.
+- **Cenários de Falha**:
+  - Erro na comunicação com API do marketplace.
+  - Falha ao atualizar estoque.
+  - Pedido duplicado ou não sincronizado.
+  - Autenticação falha ao acessar APIs do marketplace.
+  - Tempo de resposta da API excedendo os limites aceitáveis.
+  - Erro na aplicação de regras de preço.
+- **Cenários de Carga**:
+  - Teste de alto volume de pedidos simultâneos.
+  - Teste de degradação da performance sob carga elevada.
+  - Validação do tempo de resposta sob uso extremo.
+
+#### Priorização dos Testes:
+- **Alta prioridade**: Pedidos e faturamento (impacto direto no negócio).
+- **Média prioridade**: Estoque e preço (impacto em vendas e gestão).
+- **Baixa prioridade**: Edição e exclusão de anúncios.
+
+### Execução dos Testes
+#### Ambiente de Teste:
+- Ambiente de homologação.
+- Simulação de APIs dos marketplaces para testar respostas controladas.
+- Banco de dados isolado para testes sem impactar dados reais.
+
+#### Dados de Teste:
+- Conjunto de produtos fictícios com diferentes preços e estoques.
+- Perfis de usuários fictícios para testes de pedidos.
+- Pedidos de teste gerados via API ou sandbox do marketplace.
+- Cenários de integração com diferentes métodos de pagamento.
+
+#### Ferramentas de Automação:
+- **Cypress** ou **Selenium** para testes da interface do e-commerce.
+- **Postman** ou **insomnia** para automação de testes de API.
+- **JMeter** para testes de carga e desempenho.
+
+#### Registro de Resultados:
+- **Jira/Trello** para documentar casos de teste e resultados.
+- Logs armazenados para análise de erros.
+- Relatórios detalhados sobre falhas e impactos no negócio no **Confluence**.
+
+---
+
+## 2. Plano de Testes para Integração com Bling
+
+### Documentação e Materiais de Apoio
+- **Documentação oficial da API do Bling**.
+- **Especificações técnicas** da integração.
+- **Requisitos funcionais e não funcionais** do projeto.
+- **Diagramas de fluxo de dados** entre o e-commerce e o Bling.
+- **Logs e histórico de comunicação** com a API do Bling.
+- **Políticas de segurança e conformidade** exigidas pela Bling.
+
+### Mapeamento dos Requisitos
+- Criar uma **matriz de rastreabilidade** relacionando os requisitos do projeto com os casos de teste.
+- Classificar os requisitos por área funcional (sincronização de produtos, pedidos, estoque, relatórios).
+- Definir **critérios de aceitação** para cada funcionalidade da integração.
+
+### Utilização de Ferramentas
+- **Jira** ou **Trello** para gerenciamento de testes.
+- **Postman** para testes manuais de API.
+- **Swagger** para documentação e exploração das APIs.
+- **Confluence** para centralização da documentação.
+
+### Abrangência dos Testes
+#### Funcionalidades a serem testadas:
+- **Sincronização de Produtos**: Criação, edição e exclusão de produtos.
+- **Atualização de Estoque**: Controle e sincronização de quantidades em tempo real.
+- **Processamento de Pedidos**: Importação e atualização de status dos pedidos.
+- **Geração de Relatórios**: Exportação de dados de vendas e estoque.
+- **Validação de Segurança**: Controle de autenticação e permissões nas chamadas de API.
+
+#### Priorização dos Testes:
+- **Alta prioridade**: Sincronização de estoque e processamento de pedidos.
+- **Média prioridade**: Atualização de produtos.
+- **Baixa prioridade**: Geração de relatórios.
+
+### Execução dos Testes
+#### Dados de Teste:
+- Produtos fictícios com diferentes preços e quantidades.
+- Pedidos simulados com diferentes status e formas de pagamento.
+- Usuários fictícios com diferentes permissões de acesso.
+
+#### Ferramentas de Automação:
+- **Cypress** ou **Selenium** para testes de interface.
+- **Postman** ou **RestAssured** para testes de API.
+- **JMeter** para testes de carga e desempenho.
+
+#### Registro de Resultados:
+- **Jira/Trello** para documentar execução dos testes.
+- Dashboards em **BI** para monitoramento de integrações em tempo real.
+- Relatórios detalhados sobre falhas e impactos no negócio.
+
+---
+
+## 3. Casos de Teste para Validação de Dados Cadastrais
+
+### Nome Completo
+- **Caso de Teste 1**: Inserir um nome completo válido (ex: "João da Silva").
+  - **Resultado Esperado**: O sistema deve aceitar o nome e salvar corretamente.
+- **Caso de Teste 2**: Inserir um nome com caracteres especiais (ex: "João D'Ávila").
+  - **Resultado Esperado**: O sistema deve aceitar o nome e salvar corretamente.
+- **Caso de Teste 3**: Inserir um nome com números (ex: "João 123").
+  - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
+- **Caso de Teste 4**: Deixar o campo em branco.
+  - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
+
+### E-mail
+- **Caso de Teste 1**: Inserir um e-mail válido (ex: "joao.silva@example.com").
+  - **Resultado Esperado**: O sistema deve aceitar o e-mail e salvar corretamente.
+- **Caso de Teste 2**: Inserir um e-mail sem o símbolo "@" (ex: "joao.silvaexample.com").
+  - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
+- **Caso de Teste 3**: Inserir um e-mail sem domínio (ex: "joao.silva@").
+  - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
+- **Caso de Teste 4**: Deixar o campo em branco.
+  - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
+
+### Número de Telefone
+- **Caso de Teste 1**: Inserir um número de telefone válido (ex: "(11) 98765-4321").
+  - **Resultado Esperado**: O sistema deve aceitar o número e salvar corretamente.
+- **Caso de Teste 2**: Inserir um número de telefone sem o DDD (ex: "98765-4321").
+  - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
+- **Caso de Teste 3**: Inserir um número de telefone com caracteres não numéricos (ex: "(11) 98765-ABCD").
+  - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
+- **Caso de Teste 4**: Deixar o campo em branco.
+  - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
+
+### Data de Nascimento
+- **Caso de Teste 1**: Inserir uma data de nascimento válida (ex: "15/08/1990").
+  - **Resultado Esperado**: O sistema deve aceitar a data e salvar corretamente.
+- **Caso de Teste 2**: Inserir uma data de nascimento inválida (ex: "31/02/1990").
+  - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
+- **Caso de Teste 3**: Inserir uma data de nascimento futura (ex: "15/08/2025").
+  - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
+- **Caso de Teste 4**: Deixar o campo em branco.
+  - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
+
+### Endereço
+- **Caso de Teste 1**: Inserir um endereço válido (ex: Rua: "Rua das Flores", Cidade: "São Paulo", Estado: "SP", CEP: "01234-567").
+  - **Resultado Esperado**: O sistema deve aceitar o endereço e salvar corretamente.
+- **Caso de Teste 2**: Inserir um CEP inválido (ex: "12345").
+  - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
+- **Caso de Teste 3**: Inserir um estado inválido (ex: "XX").
+  - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
+- **Caso de Teste 4**: Deixar um dos campos do endereço em branco (ex: Cidade em branco).
+  - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
+
+### Considerações Adicionais
+- **Testes de Limite**: Verifique como o sistema lida com entradas no limite do permitido, como nomes muito longos, e-mails com muitos caracteres, etc.
+- **Testes de Integração**: Verifique se as alterações nos campos são refletidas corretamente em outras partes do sistema que dependem desses dados.
+- **Testes de Usabilidade**: Verifique se as mensagens de erro são claras e ajudam o usuário a corrigir os dados de entrada.
