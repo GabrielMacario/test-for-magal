@@ -136,9 +136,68 @@
 
 ---
 
-## 3. Casos de Teste para Validação de Dados Cadastrais
+## 3º Cenário: Anúncios Pausados sem Estoque no Mercado Livre
 
-### Nome Completo
+### Descrição do Problema
+O cliente relatou que, quando os itens ficam sem estoque, os anúncios no Mercado Livre são marcados como **"Pausado"** em vez de **"Pausado (sem estoque)"**. Isso faz com que os anúncios permaneçam disponíveis para venda, resultando em pedidos para itens sem estoque real. Como consequência, o cliente precisa cancelar vendas, prejudicando sua reputação.
+
+Atualmente, o cliente possui **38 anúncios** com a situação **"Pausado"**, e ele afirma que não os pausou manualmente. Quando uma atualização manual de estoque é enviada, o anúncio muda para **"Pausado sem estoque"** e fica indisponível para venda. Um exemplo de anúncio afetado é o **MLB3097510082**.
+
+### Passos para Análise e Identificação do Problema
+1. **Revisão da Documentação do Mercado Livre**:
+   - Consulte a documentação oficial do Mercado Livre sobre a gestão de anúncios e estoques, especialmente as seções relacionadas à sincronização de estoques e status de anúncios.
+   - Verifique como o Mercado Livre espera receber as atualizações de estoque e como ele deve reagir quando o estoque chega a zero.
+
+2. **Análise do Fluxo de Atualização de Estoque**:
+   - Verifique como nossa empresa (MAGAZORD) está configurado para enviar atualizações de estoque para o Mercado Livre.
+   - Confirme se a nossa empresa está enviando o valor de estoque igual a zero quando um produto fica sem estoque.
+   - Verifique se há algum filtro ou regra no nosso código que possa estar impedindo o envio de estoque zero.
+
+3. **Verificação de Logs e Histórico**:
+   - Analise os logs de integração entre o Magazord e o Mercado Livre para identificar falhas ou inconsistências no envio de dados.
+   - Verifique se há registros de tentativas de envio de estoque zero que foram ignoradas ou falharam.
+
+4. **Testes de Simulação**:
+   - Simule a situação de estoque zero na empresa e observe como o sistema reage.
+   - Verifique se o status do anúncio no Mercado Livre muda para **"Pausado (sem estoque)"** após a simulação.
+
+### Possíveis Hipóteses do Erro
+1. **Código incorreto na empresa**:
+   - A empresa pode estar com alguma falha no códig, no momento de enviar atualizações de estoque zero para o Mercado Livre.
+   - Pode haver uma regra ou filtro no nosso código que está impedindo o envio de estoque zero.
+
+2. **Falha na Integração**:
+   - A integração entre o Magazord e o Mercado Livre pode estar com falhas, resultando em informações de estoque não sendo enviadas corretamente.
+   - Pode haver um problema de comunicação entre os sistemas, como timeout ou erros de autenticação.
+
+3. **Bug no Mercado Livre**:
+   - Pode haver um bug ou problema no lado do Mercado Livre que está impedindo a correta atualização do status do anúncio para **"Pausado (sem estoque)"**.
+   - O Mercado Livre pode estar interpretando incorretamente as informações de estoque recebidas.
+
+4. **Atraso na Sincronização**:
+   - Pode haver um atraso na sincronização de dados entre o Magazord e o Mercado Livre, resultando em uma discrepância temporária entre o estoque real e o estoque exibido no Mercado Livre.
+
+5. **Configuração de Anúncios**:
+   - O cliente pode ter configurado os anúncios de forma que eles não sejam automaticamente pausados quando o estoque chega a zero.
+   - Verifique as configurações de anúncios no Mercado Livre para garantir que estão corretas.
+
+---
+
+## 4º Cenário: Validação de Dados Cadastrais
+
+### Descrição do Cenário
+Você está encarregado de testar a validação de dados cadastrais em um sistema de gerenciamento de usuários. O sistema possui os seguintes campos de cadastro:
+- **Nome completo**
+- **E-mail**
+- **Número de telefone**
+- **Data de nascimento**
+- **Endereço** (com campos para rua, cidade, estado e CEP)
+
+Houve alterações nos campos mencionados acima no cadastro do cliente. Quais testes você faria para validar que o(s) campo(s) está(ão) funcionando conforme esperado?
+
+### Casos de Teste para Validação de Dados Cadastrais
+
+#### Nome Completo
 - **Caso de Teste 1**: Inserir um nome completo válido (ex: "João da Silva").
   - **Resultado Esperado**: O sistema deve aceitar o nome e salvar corretamente.
 - **Caso de Teste 2**: Inserir um nome com caracteres especiais (ex: "João D'Ávila").
@@ -148,7 +207,7 @@
 - **Caso de Teste 4**: Deixar o campo em branco.
   - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
 
-### E-mail
+#### E-mail
 - **Caso de Teste 1**: Inserir um e-mail válido (ex: "joao.silva@example.com").
   - **Resultado Esperado**: O sistema deve aceitar o e-mail e salvar corretamente.
 - **Caso de Teste 2**: Inserir um e-mail sem o símbolo "@" (ex: "joao.silvaexample.com").
@@ -158,7 +217,7 @@
 - **Caso de Teste 4**: Deixar o campo em branco.
   - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
 
-### Número de Telefone
+#### Número de Telefone
 - **Caso de Teste 1**: Inserir um número de telefone válido (ex: "(11) 98765-4321").
   - **Resultado Esperado**: O sistema deve aceitar o número e salvar corretamente.
 - **Caso de Teste 2**: Inserir um número de telefone sem o DDD (ex: "98765-4321").
@@ -168,7 +227,7 @@
 - **Caso de Teste 4**: Deixar o campo em branco.
   - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
 
-### Data de Nascimento
+#### Data de Nascimento
 - **Caso de Teste 1**: Inserir uma data de nascimento válida (ex: "15/08/1990").
   - **Resultado Esperado**: O sistema deve aceitar a data e salvar corretamente.
 - **Caso de Teste 2**: Inserir uma data de nascimento inválida (ex: "31/02/1990").
@@ -178,7 +237,7 @@
 - **Caso de Teste 4**: Deixar o campo em branco.
   - **Resultado Esperado**: O sistema deve rejeitar a entrada e exibir uma mensagem de erro.
 
-### Endereço
+#### Endereço
 - **Caso de Teste 1**: Inserir um endereço válido (ex: Rua: "Rua das Flores", Cidade: "São Paulo", Estado: "SP", CEP: "01234-567").
   - **Resultado Esperado**: O sistema deve aceitar o endereço e salvar corretamente.
 - **Caso de Teste 2**: Inserir um CEP inválido (ex: "12345").
